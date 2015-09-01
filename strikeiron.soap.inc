@@ -10,7 +10,7 @@ class StrikeIron {
 
   public $url = 'http://ws.strikeiron.com';
 
-  private function StrikeIronConnect() {
+  private function __construct() {
     $client = new SoapClient($this->$wsdl, array('trace' => 1, 'exceptions' => 1));
     //create user array for SOAP header
     $user = array(
@@ -32,7 +32,6 @@ class StrikeIron {
 
     try
     {
-      $this->StrikeIronConnect();
       //Calls ValidateNumber and displays the result
       $this->ValidateNumber($phone);
     }
