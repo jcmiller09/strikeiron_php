@@ -13,7 +13,7 @@ class StrikeIron {
   private function __construct($key, $password) {
     $this->_key = $key;
     $this->_password = $password;
-    
+
     $client = new SoapClient($this->$wsdl, array('trace' => 1, 'exceptions' => 1));
     //create user array for SOAP header
     $user = array(
@@ -154,3 +154,5 @@ class StrikeIron {
 
 
 }
+
+?>
