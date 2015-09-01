@@ -2,21 +2,24 @@
 
 class StrikeIron {
 
-  public $key = 'my user key / id';
+  private $_key = '';
 
-  public $password = 'my password';
+  private $_password = '';
 
   public $wsdl = 'http://ws.strikeiron.com/PhoneValidation3?WSDL';
 
   public $url = 'http://ws.strikeiron.com';
 
-  private function __construct() {
+  private function __construct($key, $password) {
+    $this->_key = $key;
+    $this->_password = $password;
+    
     $client = new SoapClient($this->$wsdl, array('trace' => 1, 'exceptions' => 1));
     //create user array for SOAP header
     $user = array(
       "RegisteredUser" => array(
-        'UserID' => $this->key,
-        'Password' => $this->password
+        'UserID' => $this->_key,
+        'Password' => $this->_password
       )
     );
     $header = new SoapHeader('http://ws.strikeiron.com', 'LicenseInfo', $user);
