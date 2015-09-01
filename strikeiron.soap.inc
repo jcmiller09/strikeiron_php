@@ -23,7 +23,6 @@ class StrikeIron {
 
     // set soap headers - this will apply to all operations
     $client->__setSoapHeaders($header);
-    return $client;
   }
   /**
    * @param $email
