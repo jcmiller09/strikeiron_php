@@ -1,6 +1,6 @@
 # strikeiron_php
-Simple StrikeIron SOAP Integration for PHP 
-Support For 
+Simple StrikeIron SOAP Integration for PHP  
+Support For:  
 * Email Plus Hygiene
 * Global Phone    
   
