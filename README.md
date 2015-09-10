@@ -1,8 +1,8 @@
 # strikeiron_php
 Simple StrikeIron SOAP Integration for PHP  
 Support For:  
-* Email Plus Hygiene
-* Global Phone    
+* Email Plus Hygiene (product key authentication)
+* Global Phone (product key authentication)   
   
   More basic integrations coming for User/Password Services including basic Email, Phone, and Address  
 Some basic examples from the vendor: http://www.strikeiron.com/support/sample-code/  
