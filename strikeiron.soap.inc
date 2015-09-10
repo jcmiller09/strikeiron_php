@@ -2,10 +2,10 @@
 
 class StrikeIron {
 
-  public $_url = 'http://ws.strikeiron.com';
+  private $_url = 'http://ws.strikeiron.com';
   private $_key;
   private $_password;
-  private $client = '';
+  private $client;
 
   public function __construct($key, $password) {
     $this->_key = $key;
@@ -22,9 +22,8 @@ class StrikeIron {
         'Password' => $this->_password
       )
     );
+    //set the soap header
     $header = new SoapHeader($this->_url, 'LicenseInfo', $user);
-
-    // set soap headers - this will apply to all operations
     $this->client->__setSoapHeaders($header);
   }
 
@@ -32,11 +31,11 @@ class StrikeIron {
    * @param $phone
    * @return object @result
    */
-  public function getPhone($phone = NULL) {
+  public function getGlobalPhone($phone = NULL) {
 
     try {
       //Calls ValidateNumber and displays the result
-      $result = $this->ValidateNumber($phone);
+      $result = $this->ValGlobalNumber($phone);
     } catch (Exception $e) {
       echo $e->getMessage() . "<br />";
     }
@@ -47,11 +46,12 @@ class StrikeIron {
   }
 
   /**
+   * Validate Global Phone Validation v 1.5
    * @param $phone
    * @return object $result
    */
-  private function ValidateNumber($phone) {
-    $this->client->__setLocation('http://ws.strikeiron.com/PhoneValidation3?WSDL');
+  private function ValGlobalNumber($phone) {
+    $this->client->__setLocation('http://ws.strikeiron.com/GlobalPhoneVal15?WSDL');
 
     //Set up parameters for ValidateNumber
     $phoneNumber = !empty($phone) ? $phone : '9194674545';
@@ -69,10 +69,10 @@ class StrikeIron {
    * @param $email
    * @return object $result
    */
-  public function getEmail($email = NULL) {
+  public function getEmailHyg($email = NULL) {
     try {
       //Calls ValidateEmail and displays the result
-      $result = StrikeIron::ValidateEmail($email);
+      $result = StrikeIron::ValEmailHyg($email);
     } catch (Exception $e) {
       echo $e->getMessage() . "<br />";
     }
@@ -83,11 +83,11 @@ class StrikeIron {
   }
 
   /**
+   * Validate Email Plus Hygiene
    * @param $email
    * @return object $result
-
    */
-  private function ValidateEmail($email) {
+  private function ValEmailHyg($email) {
     $this->client->__setLocation('http://ws.strikeiron.com/emv6Hygiene?WSDL');
     //Set up input parameters for the VerifyEmail operation
     $email_address = !empty($email) ? $email : 'test.bot@testtronica.com';
